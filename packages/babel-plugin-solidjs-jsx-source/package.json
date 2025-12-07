@@ -1,16 +1,14 @@
 {
-    "name": "@monorepo/common",
+    "name": "babel-plugin-solidjs-jsx-source",
     "private": false,
-    "version": "1.0.0",
+    "version": "0.0.1",
     "description": "Demo library that contains common utility functions",
     "repository": "https://github.com/y1j2x34/babel-plugin-solidjs-jsx-source.git",
     "author": {
         "name": "y1j2x34",
         "email": "y1j2x34@users.noreply.github.com"
     },
-    "files": [
-        "lib"
-    ],
+    "files": ["lib"],
     "main": "./lib/index.js",
     "module": "./lib/index.mjs",
     "types": "./lib/index.d.ts",
@@ -37,5 +35,11 @@
         "test": "vitest --config ../../vitest.config.ts run",
         "test:unit": "vitest --config ../../vitest.config.ts --project unit run",
         "test:integration": "vitest --config ../../vitest.config.ts --project integration run"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.28.5",
+        "@babel/types": "^7.28.5",
+        "@types/babel__core": "^7.20.5",
+        "@types/babel__traverse": "^7.28.0"
     }
 }

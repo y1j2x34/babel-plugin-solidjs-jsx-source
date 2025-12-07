@@ -6,18 +6,11 @@
         "module": "NodeNext",
         "target": "ESNext",
         "moduleResolution": "NodeNext",
-        "lib": [
-            "ESNext"
-        ],
-        "types": [
-            "node"
-        ],
+        "lib": ["ESNext"],
+        "types": ["node"],
         "composite": true,
         "declaration": true,
         "noEmit": true
     },
-    "include": [
-        "vitest.config.ts",
-        "tsup.config.ts"
-    ]
+    "include": ["vitest.config.ts", "tsup.config.ts", "packages/*/vite.config.ts"]
 }
