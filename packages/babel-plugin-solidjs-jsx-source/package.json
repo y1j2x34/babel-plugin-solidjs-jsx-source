@@ -1,7 +1,7 @@
 {
     "name": "babel-plugin-solidjs-jsx-source",
     "private": false,
-    "version": "1.0.0",
+    "version": "0.0.1",
     "description": "Demo library that contains common utility functions",
     "repository": "https://github.com/y1j2x34/babel-plugin-solidjs-jsx-source.git",
     "author": {
