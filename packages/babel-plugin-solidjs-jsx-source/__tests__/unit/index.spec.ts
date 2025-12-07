@@ -5,7 +5,7 @@ import { describe, it, expect } from 'vitest';
 /**
  * Helper function to transform SolidJS JSX code using the plugin
  */
-function transformCode(code: string, options?: any, filename = 'test.tsx') {
+function transformCode(code: string, options?: unknown, filename = 'test.tsx') {
     const result = transformSync(code, {
         filename,
         plugins: [[solidJSXSourcePlugin, options]],
@@ -45,7 +45,7 @@ describe('babel-plugin-solidjs-jsx-source', () => {
             // Should have multiple data-source attributes
             const matches = output.match(/data-source/g);
             expect(matches).toBeTruthy();
-            expect(matches!.length).toBe(3); // div, span, Component
+            expect(matches?.length).toBe(3); // div, span, Component
         });
 
         it('should add data-source to nested JSX elements', () => {
@@ -62,7 +62,7 @@ describe('babel-plugin-solidjs-jsx-source', () => {
 
             const matches = output.match(/data-source/g);
             expect(matches).toBeTruthy();
-            expect(matches!.length).toBe(5); // div, header, h1, main, p
+            expect(matches?.length).toBe(5); // div, header, h1, main, p
         });
 
         it('should preserve existing JSX attributes', () => {
@@ -81,7 +81,7 @@ describe('babel-plugin-solidjs-jsx-source', () => {
             expect(output).toContain('data-source');
             // Both Show and div should have data-source
             const matches = output.match(/data-source/g);
-            expect(matches!.length).toBe(2);
+            expect(matches?.length).toBe(2);
         });
 
         it('should handle SolidJS For component', () => {
@@ -113,7 +113,7 @@ describe('babel-plugin-solidjs-jsx-source', () => {
             expect(output).not.toContain('data-source');
 
             const matches = output.match(/data-location/g);
-            expect(matches!.length).toBe(2);
+            expect(matches?.length).toBe(2);
         });
     });
 
@@ -129,7 +129,7 @@ describe('babel-plugin-solidjs-jsx-source', () => {
 
             // div and span should have data-source, but not Fragment
             const matches = output.match(/data-source/g);
-            expect(matches!.length).toBe(2); // div and span only
+            expect(matches?.length).toBe(2); // div and span only
         });
 
         it('should ignore multiple specified tags', () => {
@@ -145,7 +145,7 @@ describe('babel-plugin-solidjs-jsx-source', () => {
 
             // Only div and span should have data-source
             const matches = output.match(/data-source/g);
-            expect(matches!.length).toBe(2);
+            expect(matches?.length).toBe(2);
         });
 
         it('should not ignore tags when ignoreTags is empty', () => {
@@ -158,7 +158,7 @@ describe('babel-plugin-solidjs-jsx-source', () => {
             const output = transformCode(input, { ignoreTags: [] });
 
             const matches = output.match(/data-source/g);
-            expect(matches!.length).toBe(3); // all elements
+            expect(matches?.length).toBe(3); // all elements
         });
     });
 
@@ -242,7 +242,7 @@ describe('babel-plugin-solidjs-jsx-source', () => {
 
             // Should only have one data-source attribute
             const matches = output.match(/data-source/g);
-            expect(matches!.length).toBe(1);
+            expect(matches?.length).toBe(1);
             // Should keep the existing value
             expect(output).toContain('data-source="existing"');
         });
@@ -258,7 +258,7 @@ describe('babel-plugin-solidjs-jsx-source', () => {
             // Should add data-source to div elements
             const matches = output.match(/data-source/g);
             expect(matches).toBeTruthy();
-            expect(matches!.length).toBeGreaterThanOrEqual(2);
+            expect(matches?.length).toBeGreaterThanOrEqual(2);
         });
 
         it('should handle elements with spread attributes', () => {
@@ -340,7 +340,7 @@ describe('babel-plugin-solidjs-jsx-source', () => {
 
             // Should only have one data-source attribute per element
             const matches = result?.code?.match(/data-source/g);
-            expect(matches!.length).toBe(1);
+            expect(matches?.length).toBe(1);
         });
     });
 
@@ -356,7 +356,7 @@ describe('babel-plugin-solidjs-jsx-source', () => {
             expect(output).toContain('data-source');
             // Switch, 2 Match, 2 div
             const matches = output.match(/data-source/g);
-            expect(matches!.length).toBe(5);
+            expect(matches?.length).toBe(5);
         });
 
         it('should handle SolidJS Portal component', () => {
@@ -402,7 +402,7 @@ describe('babel-plugin-solidjs-jsx-source', () => {
 
             // div and span should have __source, but not Fragment
             const matches = output.match(/__source/g);
-            expect(matches!.length).toBe(2);
+            expect(matches?.length).toBe(2);
         });
 
         it('should work with custom attribute and multiple ignored tags', () => {
@@ -422,7 +422,7 @@ describe('babel-plugin-solidjs-jsx-source', () => {
             expect(output).toContain('data-loc');
             // Only div and span
             const matches = output.match(/data-loc/g);
-            expect(matches!.length).toBe(2);
+            expect(matches?.length).toBe(2);
         });
     });
 });

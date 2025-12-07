@@ -1,4 +1,4 @@
-import type { PluginObj, PluginPass } from '@babel/core';
+import type { BabelFile, PluginObj, PluginPass } from '@babel/core';
 import type { NodePath, Visitor } from '@babel/traverse';
 import type { JSXOpeningElement } from '@babel/types';
 
@@ -32,16 +32,18 @@ function resolveFilename({ filename, sourceRoot }: { filename?: string | null; s
     return filename;
 }
 
+type BabelFileEx = BabelFile & { get: (key: string) => any; set: (key: string, value: any) => void };
+
 const FIELD_FOR_MARK_SOURCE_VISITED = '@@babel-plugin-solidjs-jsx-source-visited';
 
-export default function ({ types: t }: { types: typeof import('@babel/types') }): PluginObj<PluginPass> {
+export default function ({ types: t }: { types: typeof import('@babel/types') }): PluginObj {
     const visitor: Visitor<PluginPass> = {
         Program(path, state) {
             const options = (state.opts ?? {}) as SolidJSXSourcePluginOptions;
             if (options.disabled) {
                 return;
             }
-            const file = state.file as any;
+            const file = state.file as BabelFileEx;
             if (file.get(FIELD_FOR_MARK_SOURCE_VISITED)) {
                 return;
             }
