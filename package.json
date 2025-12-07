@@ -30,7 +30,7 @@
     "author": "y1j2x34 <y1j2x34@users.noreply.github.com>",
     "license": "ISC",
     "devDependencies": {
-        "@changesets/cli": "^2.29.7",
+        "@changesets/cli": "^2.29.8",
         "@commitlint/cli": "^19.8.1",
         "@commitlint/config-conventional": "^20.2.0",
         "@commitlint/prompt-cli": "^19.8.1",
