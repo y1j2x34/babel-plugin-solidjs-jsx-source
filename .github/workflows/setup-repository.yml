@@ -1,0 +1,66 @@
+name: Setup Repository
+on:
+  push:
+    branches:
+      - master
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  setup:
+    name: Setup Repository
+    runs-on: ubuntu-latest
+    # Only run when the repository name is not the template repository itself (please replace with your own template repository name)
+    if: github.repository != 'y1j2x34/tsup-vitest-monorepo-boilerplate'
+    
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check if setup is already done
+        id: check_setup
+        run: |
+          if [ ! -f "scripts/setup-repo.mjs" ]; then
+            echo "Setup script not found, skipping..."
+            echo "completed=true" >> $GITHUB_OUTPUT
+          else
+            echo "completed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Setup Node.js
+        if: steps.check_setup.outputs.completed == 'false'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Update package.json info
+        if: steps.check_setup.outputs.completed == 'false'
+        run: |
+          # Get repository owner and name
+          OWNER=$(echo '${{ github.repository }}' | cut -d'/' -f1)
+          REPO=$(echo '${{ github.repository }}' | cut -d'/' -f2)
+          
+          # Get triggering Actor info as author info
+          AUTHOR_NAME="${{ github.triggering_actor }}"
+          # GitHub Action cannot directly get user email, using noreply email or leaving empty
+          AUTHOR_EMAIL="${{ github.triggering_actor }}@users.noreply.github.com"
+
+          node scripts/setup-repo.mjs "$OWNER" "$REPO" "$AUTHOR_NAME" "$AUTHOR_EMAIL"
+
+      - name: Commit changes
+        if: steps.check_setup.outputs.completed == 'false'
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          git add .
+          
+          # Delete setup script and workflow itself (self-destruct) to prevent repeated runs
+          git rm scripts/setup-repo.mjs
+          git rm .github/workflows/setup-repository.yml
+          
+          git commit -m "chore: initialize repository with correct metadata"
+          git push
