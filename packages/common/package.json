@@ -3,12 +3,14 @@
     "private": false,
     "version": "1.0.0",
     "description": "Demo library that contains common utility functions",
-    "repository": "https://github.com/y1j2x34/tsup-vitest-monorepo-boilerplate.git",
+    "repository": "https://github.com/y1j2x34/babel-plugin-solidjs-jsx-source.git",
     "author": {
-        "name": "Chienhsin Yang",
-        "email": "y1j2x345@gmail.com"
+        "name": "y1j2x34",
+        "email": "y1j2x34@users.noreply.github.com"
     },
-    "files": ["lib"],
+    "files": [
+        "lib"
+    ],
     "main": "./lib/index.js",
     "module": "./lib/index.mjs",
     "types": "./lib/index.d.ts",

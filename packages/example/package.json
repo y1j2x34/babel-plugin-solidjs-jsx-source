@@ -4,8 +4,8 @@
     "version": "0.1.0",
     "description": "Demo example that imports a local package",
     "author": {
-        "name": "Chienhsin Yang",
-        "email": "y1j2x345@gmail.com"
+        "name": "y1j2x34",
+        "email": "y1j2x34@users.noreply.github.com"
     },
     "main": "./src/index.ts",
     "scripts": {
@@ -13,5 +13,6 @@
     },
     "dependencies": {
         "@monorepo/common": "workspace:*"
-    }
+    },
+    "repository": "https://github.com/y1j2x34/babel-plugin-solidjs-jsx-source.git"
 }
