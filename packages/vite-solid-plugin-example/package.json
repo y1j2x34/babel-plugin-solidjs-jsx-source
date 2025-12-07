@@ -1,0 +1,25 @@
+{
+    "private": true,
+    "name": "@monorepo/example",
+    "version": "0.1.0",
+    "description": "Demo example that imports a local package",
+    "author": {
+        "name": "y1j2x34",
+        "email": "y1j2x34@users.noreply.github.com"
+    },
+    "main": "./src/index.ts",
+    "scripts": {
+        "test:unit": "vitest --config ../../vitest.config.ts --project unit run",
+        "build": "vite build"
+    },
+    "devDependencies": {
+        "babel-plugin-solidjs-jsx-source": "workspace:*",
+        "vite": "^7.2.4",
+        "vite-plugin-solid": "^2.11.10",
+        "vite-tsconfig-paths": "^5.1.4"
+    },
+    "repository": "https://github.com/y1j2x34/babel-plugin-solidjs-jsx-source.git",
+    "dependencies": {
+        "solid-js": "^1.9.10"
+    }
+}
