@@ -2,6 +2,7 @@
 
 A Babel plugin that adds source file and location information to JSX elements. This enables powerful debugging capabilities and development tools, such as click-to-source functionality in browser DevTools.
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/5b39ba8d02e34b359339bfca0406e2c8)](https://app.codacy.com/gh/y1j2x34/babel-plugin-solidjs-jsx-source/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![npm version](https://img.shields.io/npm/v/babel-plugin-solidjs-jsx-source.svg)](https://www.npmjs.com/package/babel-plugin-solidjs-jsx-source)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
